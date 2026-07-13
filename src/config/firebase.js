@@ -2,14 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, push, onValue, remove, update } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBXvt1f_fM0tNNbWdTzWXiMZJguc6fIne0",
-  authDomain: "divinevisionstruckpos.firebaseapp.com",
-  databaseURL: "https://divinevisionstruckpos-default-rtdb.firebaseio.com",
-  projectId: "divinevisionstruckpos",
-  storageBucket: "divinevisionstruckpos.firebasestorage.app",
-  messagingSenderId: "719228480436",
-  appId: "1:719228480436:web:c591a27c4e2a85d200e0e1",
-  measurementId: "G-XNXL8QEYFH"
+  apiKey: "AIzaSyAHC2e_fIDMyJQbeJ0RCBg-YMr3r25JEoM",
+  authDomain: "liqourstorepos-14bb5.firebaseapp.com",
+  projectId: "liqourstorepos-14bb5",
+  storageBucket: "liqourstorepos-14bb5.firebasestorage.app",
+  messagingSenderId: "43990072821",
+  appId: "1:43990072821:web:0518d99ae75a4d9f71b4bc",
+  measurementId: "G-ZDGLFHYY7X"
 };
 
 let app = null;

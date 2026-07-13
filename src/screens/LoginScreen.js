@@ -75,7 +75,7 @@ const LoginScreen = ({ onLogin }) => {
             <Image 
               source={require('../../assets/logo.png')} 
               style={styles.logo}
-              resizeMode="contain"
+              resizeMode="cover"
               onError={() => setImageError(true)}
             />
           ) : (
@@ -83,7 +83,7 @@ const LoginScreen = ({ onLogin }) => {
               <Icon name="storefront" size={60} color="#fec82b" />
             </View>
           )}
-          <Text style={styles.title}>TuckShop</Text>
+          <Text style={styles.title}>Liquor Store</Text>
           <Text style={styles.subtitle}>Point of Sale System</Text>
         </View>
 
@@ -127,6 +127,24 @@ const LoginScreen = ({ onLogin }) => {
               <Text style={styles.loginButtonText}>Login</Text>
             )}
           </TouchableOpacity>
+
+          <View style={styles.demoContainer}>
+            <Text style={styles.demoTitle}>Demo Accounts</Text>
+            <TouchableOpacity style={styles.demoButton} onPress={demoAdmin}>
+              <View style={styles.demoRow}>
+                <Icon name="person" size={16} color="#75482f" />
+                <Text style={styles.demoText}>Admin: admin@devinepos.com</Text>
+              </View>
+              <Text style={styles.demoPassword}>Pass: Devine@Admin2026#Secure</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.demoButton} onPress={demoCashier}>
+              <View style={styles.demoRow}>
+                <Icon name="person-outline" size={16} color="#75482f" />
+                <Text style={styles.demoText}>Cashier: cashier@devinepos.com</Text>
+              </View>
+              <Text style={styles.demoPassword}>Pass: Devine@Cashier2026#Strong</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -150,13 +168,18 @@ const styles = StyleSheet.create({
   logo: {
     width: 120,
     height: 120,
+    borderRadius: 60, // Makes the image circular
     marginBottom: 16,
+    borderWidth: 3, // Optional: adds a border around the circle
+    borderColor: '#fec82b', // Optional: border color
   },
   fallbackLogo: {
     backgroundColor: '#f0f0f0',
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 3,
+    borderColor: '#fec82b',
   },
   title: {
     fontSize: 28,

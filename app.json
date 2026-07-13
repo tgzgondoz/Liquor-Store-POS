@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "DevineVisionsPOS",
-    "slug": "DevineVisionsPOS",
+    "name": "LiquorStorePOS",
+    "slug": "LiquorStorePOS",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,7 +16,7 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "package": "com.tatenda_gondo.DevineVisionsPOS"
+      "package": "com.tatenda_gondo.LiquorStorePOS"
     },
     "web": {
       "favicon": "./assets/favicon.png"
