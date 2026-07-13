@@ -12,13 +12,13 @@ const ProductStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#fec82b',
+          backgroundColor: '#f4a900',
           elevation: 0,
           shadowOpacity: 0,
           borderBottomWidth: 1,
           borderBottomColor: '#e0e0e0',
         },
-        headerTintColor: '#0e0b05',
+        headerTintColor: '#3d2b1f',
         headerTitleStyle: {
           fontWeight: 'bold',
           fontSize: 18,
@@ -26,7 +26,7 @@ const ProductStack = () => {
         headerTitleAlign: 'center',
         headerBackTitleVisible: false,
         headerBackImage: () => (
-          <Icon name="chevron-back" size={24} color="#0e0b05" style={{ marginLeft: 8 }} />
+          <Icon name="chevron-back" size={24} color="#3d2b1f" style={{ marginLeft: 8 }} />
         ),
       }}
     >

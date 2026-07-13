@@ -125,7 +125,7 @@ const ProductListScreen = ({ navigation }) => {
       >
         <View style={styles.productHeader}>
           <View style={styles.productTitleContainer}>
-            <Icon name="cube" size={18} color="#fec82b" />
+            <Icon name="cube" size={18} color="#f4a900" />
             <Text style={styles.productName}>{item.name}</Text>
           </View>
           <View style={[styles.statusBadge, { backgroundColor: statusColor + '20' }]}>
@@ -158,7 +158,7 @@ const ProductListScreen = ({ navigation }) => {
             style={[styles.actionButton, styles.restockButton]}
             onPress={() => handleRestock(item)}
           >
-            <Icon name="add-circle" size={16} color="#0e0b05" />
+            <Icon name="add-circle" size={16} color="#3d2b1f" />
             <Text style={styles.restockButtonText}>Restock</Text>
           </TouchableOpacity>
           
@@ -179,7 +179,7 @@ const ProductListScreen = ({ navigation }) => {
   if (loading) {
     return (
       <View style={styles.centerContainer}>
-        <ActivityIndicator size="large" color="#fec82b" />
+        <ActivityIndicator size="large" color="#f4a900" />
       </View>
     );
   }
@@ -187,17 +187,17 @@ const ProductListScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        <Icon name="search" size={18} color="#75482f" style={styles.searchIcon} />
+        <Icon name="search" size={18} color="#3d2b1f" style={styles.searchIcon} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search products..."
-          placeholderTextColor="#75482f"
+          placeholderTextColor="#3d2b1f"
           value={searchQuery}
           onChangeText={handleSearch}
         />
         {searchQuery !== '' && (
           <TouchableOpacity onPress={() => handleSearch('')}>
-            <Icon name="close-circle" size={18} color="#75482f" />
+            <Icon name="close-circle" size={18} color="#3d2b1f" />
           </TouchableOpacity>
         )}
       </View>
@@ -229,7 +229,7 @@ const ProductListScreen = ({ navigation }) => {
         }
         ListEmptyComponent={
           <View style={styles.emptyContainer}>
-            <Icon name="cube-outline" size={64} color="#75482f" />
+            <Icon name="cube-outline" size={64} color="#3d2b1f" />
             <Text style={styles.emptyText}>No products found</Text>
             <Text style={styles.emptySubtext}>Tap + to add your first product</Text>
           </View>
@@ -241,7 +241,7 @@ const ProductListScreen = ({ navigation }) => {
         style={styles.fab}
         onPress={() => navigation.navigate('AddProduct')}
       >
-        <Icon name="add" size={32} color="#0e0b05" />
+        <Icon name="add" size={32} color="#3d2b1f" />
       </TouchableOpacity>
     </View>
   );
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
-    color: '#0e0b05',
+    color: '#3d2b1f',
   },
   categoryScroll: {
     backgroundColor: '#fff',
@@ -289,13 +289,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   categoryChipActive: {
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
   },
   categoryChipText: {
-    color: '#75482f',
+    color: '#3d2b1f',
   },
   categoryChipTextActive: {
-    color: '#0e0b05',
+    color: '#3d2b1f',
     fontWeight: '600',
   },
   listContainer: {
@@ -308,12 +308,12 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     elevation: 3,
-    shadowColor: '#0e0b05',
+    shadowColor: '#3d2b1f',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     borderLeftWidth: 4,
-    borderLeftColor: '#fec82b',
+    borderLeftColor: '#f4a900',
   },
   productHeader: {
     flexDirection: 'row',
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#0e0b05',
+    color: '#3d2b1f',
     marginLeft: 8,
     flex: 1,
   },
@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
   },
   productSku: {
     fontSize: 12,
-    color: '#75482f',
+    color: '#3d2b1f',
     marginBottom: 12,
     marginLeft: 26,
   },
@@ -356,17 +356,17 @@ const styles = StyleSheet.create({
   },
   priceLabel: {
     fontSize: 11,
-    color: '#75482f',
+    color: '#3d2b1f',
     marginBottom: 2,
   },
   price: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fec82b',
+    color: '#f4a900',
   },
   costText: {
     fontSize: 11,
-    color: '#75482f',
+    color: '#3d2b1f',
     marginTop: 4,
   },
   rightDetails: {
@@ -374,13 +374,13 @@ const styles = StyleSheet.create({
   },
   quantityLabel: {
     fontSize: 11,
-    color: '#75482f',
+    color: '#3d2b1f',
     marginBottom: 2,
   },
   quantity: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fec82b',
+    color: '#f4a900',
   },
   profitText: {
     fontSize: 11,
@@ -402,10 +402,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   restockButton: {
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
   },
   restockButtonText: {
-    color: '#0e0b05',
+    color: '#3d2b1f',
     fontWeight: '600',
     marginLeft: 6,
   },
@@ -424,11 +424,11 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 5,
-    shadowColor: '#0e0b05',
+    shadowColor: '#3d2b1f',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
@@ -441,12 +441,12 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    color: '#75482f',
+    color: '#3d2b1f',
     marginTop: 12,
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#ccc',
+    color: '#3d2b1f',
     marginTop: 8,
   },
 });

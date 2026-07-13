@@ -42,8 +42,8 @@ const AppNavigator = ({ onLogout }) => {
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#fec82b',
-        tabBarInactiveTintColor: '#75482f',
+        tabBarActiveTintColor: '#f4a900',
+        tabBarInactiveTintColor: '#3d2b1f',
         tabBarStyle: {
           height: 60,
           paddingBottom: 8,
@@ -59,7 +59,7 @@ const AppNavigator = ({ onLogout }) => {
           shadowOpacity: 0,
           borderBottomWidth: 1,
         },
-        headerTintColor: '#0e0b05',
+        headerTintColor: '#3d2b1f',
         headerTitleStyle: {
           fontWeight: 'bold',
           fontSize: 18,
@@ -72,7 +72,7 @@ const AppNavigator = ({ onLogout }) => {
               style={{ width: 32, height: 32, borderRadius: 16 }}
               resizeMode="contain"
             />
-            <Text style={{ marginLeft: 8, fontSize: 14, fontWeight: '600', color: '#75482f' }}>
+            <Text style={{ marginLeft: 8, fontSize: 14, fontWeight: '600', color: '#3d2b1f' }}>
               POS
             </Text>
           </View>
@@ -82,7 +82,7 @@ const AppNavigator = ({ onLogout }) => {
             onPress={onLogout} 
             style={{ marginRight: 16 }}
           >
-            <Icon name="log-out" size={22} color="#0e0b05" />
+            <Icon name="log-out" size={22} color="#3d2b1f" />
           </TouchableOpacity>
         ),
       })}

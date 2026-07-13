@@ -201,18 +201,18 @@ const CategoryManagementScreen = () => {
     <View style={styles.categoryCard}>
       <View style={styles.categoryInfo}>
         <View style={styles.categoryIconContainer}>
-          <Icon name="folder-open-outline" size={24} color="#fec82b" />
+          <Icon name="folder-open-outline" size={24} color="#f4a900" />
         </View>
         <View style={styles.categoryDetails}>
           <Text style={styles.categoryName}>{item.name}</Text>
           {item.description ? (
             <View style={styles.descriptionContainer}>
-              <Icon name="document-text-outline" size={12} color="#75482f" />
+              <Icon name="document-text-outline" size={12} color="#3d2b1f" />
               <Text style={styles.categoryDescription}>{item.description}</Text>
             </View>
           ) : null}
           <View style={styles.productCountContainer}>
-            <Icon name="cube-outline" size={12} color="#75482f" />
+            <Icon name="cube-outline" size={12} color="#3d2b1f" />
             <Text style={styles.productCount}>
               {productCount[item.name] || 0} product(s)
             </Text>
@@ -225,7 +225,7 @@ const CategoryManagementScreen = () => {
           style={[styles.actionBtn, styles.editBtn]}
           onPress={() => handleEditCategory(item)}
         >
-          <Icon name="create-outline" size={14} color="#0e0b05" />
+          <Icon name="create-outline" size={14} color="#3d2b1f" />
           <Text style={styles.actionBtnText}>Edit</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -243,7 +243,7 @@ const CategoryManagementScreen = () => {
     return (
       <View style={styles.centerContainer}>
         <StatusBar barStyle="dark-content" backgroundColor="#f5f5f5" />
-        <ActivityIndicator size="large" color="#fec82b" />
+        <ActivityIndicator size="large" color="#f4a900" />
         <Text style={styles.loadingText}>Loading categories...</Text>
       </View>
     );
@@ -261,25 +261,25 @@ const CategoryManagementScreen = () => {
           setModalVisible(true);
         }}
       >
-        <Icon name="add" size={32} color="#0e0b05" />
+        <Icon name="add" size={32} color="#3d2b1f" />
       </TouchableOpacity>
 
       {/* Stats Cards */}
       <View style={styles.statsContainer}>
         <View style={styles.statCard}>
-          <Icon name="albums-outline" size={24} color="#fec82b" />
+          <Icon name="albums-outline" size={24} color="#f4a900" />
           <Text style={styles.statValue}>{categories.length}</Text>
           <Text style={styles.statLabel}>Total Categories</Text>
         </View>
         <View style={styles.statCard}>
-          <Icon name="checkmark-circle-outline" size={24} color="#fec82b" />
+          <Icon name="checkmark-circle-outline" size={24} color="#f4a900" />
           <Text style={styles.statValue}>
             {Object.keys(productCount).length}
           </Text>
           <Text style={styles.statLabel}>Active Categories</Text>
         </View>
         <View style={styles.statCard}>
-          <Icon name="cube-outline" size={24} color="#fec82b" />
+          <Icon name="cube-outline" size={24} color="#f4a900" />
           <Text style={styles.statValue}>
             {Object.values(productCount).reduce((a, b) => a + b, 0)}
           </Text>
@@ -318,20 +318,20 @@ const CategoryManagementScreen = () => {
                 <Icon 
                   name={editingCategory ? "create-outline" : "add-circle-outline"} 
                   size={24} 
-                  color="#0e0b05" 
+                  color="#3d2b1f" 
                 />
                 <Text style={styles.modalTitle}>
                   {editingCategory ? 'Edit Category' : 'Add New Category'}
                 </Text>
               </View>
               <TouchableOpacity onPress={resetForm}>
-                <Icon name="close" size={24} color="#0e0b05" />
+                <Icon name="close" size={24} color="#3d2b1f" />
               </TouchableOpacity>
             </View>
 
             <View style={styles.modalForm}>
               <View style={styles.inputContainer}>
-                <Icon name="pricetag-outline" size={16} color="#75482f" />
+                <Icon name="pricetag-outline" size={16} color="#3d2b1f" />
                 <Text style={styles.label}>Category Name *</Text>
               </View>
               <TextInput
@@ -339,11 +339,11 @@ const CategoryManagementScreen = () => {
                 value={categoryName}
                 onChangeText={setCategoryName}
                 placeholder="Enter category name"
-                placeholderTextColor="#999"
+                placeholderTextColor="#3d2b1f"
               />
 
               <View style={styles.inputContainer}>
-                <Icon name="document-text-outline" size={16} color="#75482f" />
+                <Icon name="document-text-outline" size={16} color="#3d2b1f" />
                 <Text style={styles.label}>Description (Optional)</Text>
               </View>
               <TextInput
@@ -351,7 +351,7 @@ const CategoryManagementScreen = () => {
                 value={categoryDescription}
                 onChangeText={setCategoryDescription}
                 placeholder="Enter category description"
-                placeholderTextColor="#999"
+                placeholderTextColor="#3d2b1f"
                 multiline
                 numberOfLines={3}
               />
@@ -362,10 +362,10 @@ const CategoryManagementScreen = () => {
                 disabled={loading}
               >
                 {loading ? (
-                  <ActivityIndicator color="#0e0b05" />
+                  <ActivityIndicator color="#3d2b1f" />
                 ) : (
                   <>
-                    <Icon name="checkmark-circle-outline" size={20} color="#0e0b05" />
+                    <Icon name="checkmark-circle-outline" size={20} color="#3d2b1f" />
                     <Text style={styles.saveButtonText}>
                       {editingCategory ? 'Update Category' : 'Add Category'}
                     </Text>
@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
   loadingText: {
     marginTop: 16,
     fontSize: 14,
-    color: '#75482f',
+    color: '#3d2b1f',
   },
   fab: {
     position: 'absolute',
@@ -403,11 +403,11 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 5,
-    shadowColor: '#0e0b05',
+    shadowColor: '#3d2b1f',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
@@ -429,13 +429,13 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#0e0b05',
+    color: '#3d2b1f',
     marginTop: 8,
     marginBottom: 4,
   },
   statLabel: {
     fontSize: 11,
-    color: '#75482f',
+    color: '#3d2b1f',
     fontWeight: '500',
   },
   listContainer: {
@@ -451,7 +451,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     elevation: 2,
-    shadowColor: '#0e0b05',
+    shadowColor: '#3d2b1f',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     shadowRadius: 2,
@@ -470,7 +470,7 @@ const styles = StyleSheet.create({
   categoryName: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#0e0b05',
+    color: '#3d2b1f',
     marginBottom: 4,
   },
   descriptionContainer: {
@@ -481,7 +481,7 @@ const styles = StyleSheet.create({
   },
   categoryDescription: {
     fontSize: 12,
-    color: '#75482f',
+    color: '#3d2b1f',
     flex: 1,
   },
   productCountContainer: {
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
   },
   productCount: {
     fontSize: 11,
-    color: '#fec82b',
+    color: '#f4a900',
     fontWeight: '500',
   },
   categoryActions: {
@@ -507,13 +507,13 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   editBtn: {
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
   },
   deleteBtn: {
     backgroundColor: '#ff4444',
   },
   actionBtnText: {
-    color: '#0e0b05',
+    color: '#3d2b1f',
     fontWeight: '600',
     fontSize: 12,
   },
@@ -537,7 +537,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },
@@ -549,7 +549,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#0e0b05',
+    color: '#3d2b1f',
   },
   modalForm: {
     padding: 16,
@@ -564,7 +564,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#75482f',
+    color: '#3d2b1f',
   },
   input: {
     backgroundColor: '#f8f8f8',
@@ -573,14 +573,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     borderWidth: 1,
     borderColor: '#e0e0e0',
-    color: '#0e0b05',
+    color: '#3d2b1f',
   },
   textArea: {
     height: 80,
     textAlignVertical: 'top',
   },
   saveButton: {
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',
@@ -591,7 +591,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   saveButtonText: {
-    color: '#0e0b05',
+    color: '#3d2b1f',
     fontSize: 16,
     fontWeight: '600',
   },
@@ -602,12 +602,12 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#75482f',
+    color: '#3d2b1f',
     marginTop: 16,
   },
   emptySubtext: {
     fontSize: 13,
-    color: '#999',
+    color: '#3d2b1f',
     marginTop: 8,
   },
 });

@@ -14,16 +14,31 @@ import LoginScreen from './src/screens/LoginScreen';
 import { initializeFirebase } from './src/config/firebase';
 import AuthService from './src/services/AuthService';
 
-// Initialize default admin and cashier users with strong passwords for 2026
+// Initialize default admin and staff users with strong passwords for Liquor POS 2026
 const initializeDefaultUsers = async () => {
   try {
     const users = await AuthService.getUsers();
     if (users.length === 0) {
+      console.log('Creating default users for Liquor POS...');
       // Create default admin with strong password for 2026
-      await AuthService.registerUser('admin@devinepos.com', 'Devine@Admin2026#Secure', 'System Administrator', 'admin');
-      // Create default cashier with strong password for 2026
-      await AuthService.registerUser('cashier@devinepos.com', 'Devine@Cashier2026#Strong', 'Default Cashier', 'cashier');
-      console.log('Default DevinePOS users created successfully for 2026');
+      await AuthService.registerUser('admin@liquorpos.com', 'Liquor@Admin2026#Secure', 'Liquor Admin', 'admin');
+      // Create default staff with strong password for 2026
+      await AuthService.registerUser('staff@liquorpos.com', 'Liquor@Staff2026#Strong', 'Liquor Staff', 'cashier');
+      console.log('Default Liquor POS users created successfully for 2026');
+    } else {
+      // Check if default users exist, if not create them
+      const adminExists = users.some(user => user.email === 'admin@liquorpos.com');
+      const staffExists = users.some(user => user.email === 'staff@liquorpos.com');
+      
+      if (!adminExists) {
+        console.log('Creating missing admin user...');
+        await AuthService.registerUser('admin@liquorpos.com', 'Liquor@Admin2026#Secure', 'Liquor Admin', 'admin');
+      }
+      
+      if (!staffExists) {
+        console.log('Creating missing staff user...');
+        await AuthService.registerUser('staff@liquorpos.com', 'Liquor@Staff2026#Strong', 'Liquor Staff', 'cashier');
+      }
     }
   } catch (error) {
     console.error('Error initializing default users:', error);
@@ -75,7 +90,7 @@ const MainApp = () => {
       <SafeAreaProvider>
         <SafeAreaView style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#fec82b" />
-          <Text style={styles.loadingText}>Loading DevinePOS 2026...</Text>
+          <Text style={styles.loadingText}>Loading Liquor POS 2026...</Text>
         </SafeAreaView>
       </SafeAreaProvider>
     );

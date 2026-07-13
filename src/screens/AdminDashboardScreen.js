@@ -152,7 +152,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
     <View style={styles.userCard}>
       <View style={styles.userInfo}>
         <View style={styles.userAvatar}>
-          <Icon name="person" size={24} color="#fff" />
+          <Icon name="person" size={24} color="#3d2b1f" />
         </View>
         <View style={styles.userDetails}>
           <Text style={styles.userName}>{item.fullName}</Text>
@@ -178,7 +178,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
             style={[styles.actionBtn, styles.promoteBtn]}
             onPress={() => handleChangeRole(item.id, 'admin')}
           >
-            <Icon name="arrow-up" size={16} color="#0e0b05" />
+            <Icon name="arrow-up" size={16} color="#3d2b1f" />
             <Text style={styles.actionBtnText}>Promote</Text>
           </TouchableOpacity>
         )}
@@ -214,7 +214,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
   if (loading) {
     return (
       <View style={styles.centerContainer}>
-        <ActivityIndicator size="large" color="#fec82b" />
+        <ActivityIndicator size="large" color="#f4a900" />
       </View>
     );
   }
@@ -244,7 +244,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
         <View style={styles.listHeader}>
           <Text style={styles.listTitle}>User Management</Text>
           <TouchableOpacity style={styles.addUserBtn} onPress={() => setModalVisible(true)}>
-            <Icon name="add" size={24} color="#fec82b" />
+            <Icon name="add" size={24} color="#f4a900" />
             <Text style={styles.addUserText}>Add User</Text>
           </TouchableOpacity>
         </View>
@@ -256,7 +256,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
           contentContainerStyle={styles.listContainer}
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
-              <Icon name="people" size={64} color="#75482f" />
+              <Icon name="people" size={64} color="#3d2b1f" />
               <Text style={styles.emptyText}>No users found</Text>
             </View>
           }
@@ -273,7 +273,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
               <View style={styles.modalHeader}>
                 <Text style={styles.modalTitle}>Add New User</Text>
                 <TouchableOpacity onPress={() => setModalVisible(false)}>
-                  <Icon name="close" size={24} color="#75482f" />
+                  <Icon name="close" size={24} color="#3d2b1f" />
                 </TouchableOpacity>
               </View>
               
@@ -284,7 +284,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
                   value={newUser.fullName}
                   onChangeText={(text) => setNewUser({ ...newUser, fullName: text })}
                   placeholder="Enter full name"
-                  placeholderTextColor="#75482f"
+                  placeholderTextColor="#3d2b1f"
                 />
 
                 <Text style={styles.label}>Email *</Text>
@@ -293,7 +293,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
                   value={newUser.email}
                   onChangeText={(text) => setNewUser({ ...newUser, email: text })}
                   placeholder="Enter email"
-                  placeholderTextColor="#75482f"
+                  placeholderTextColor="#3d2b1f"
                   autoCapitalize="none"
                   keyboardType="email-address"
                 />
@@ -304,7 +304,7 @@ const AdminDashboardScreen = ({ user, onLogout }) => {
                   value={newUser.password}
                   onChangeText={(text) => setNewUser({ ...newUser, password: text })}
                   placeholder="Enter password"
-                  placeholderTextColor="#75482f"
+                  placeholderTextColor="#3d2b1f"
                   secureTextEntry
                 />
 
@@ -362,7 +362,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     elevation: 2,
-    shadowColor: '#0e0b05',
+    shadowColor: '#3d2b1f',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fec82b',
+    color: '#f4a900',
     marginBottom: 4,
   },
   adminStat: {
@@ -386,11 +386,11 @@ const styles = StyleSheet.create({
     color: '#4caf50',
   },
   activeStat: {
-    color: '#fec82b',
+    color: '#f4a900',
   },
   statLabel: {
     fontSize: 12,
-    color: '#75482f',
+    color: '#3d2b1f',
   },
   listHeader: {
     flexDirection: 'row',
@@ -402,18 +402,18 @@ const styles = StyleSheet.create({
   listTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#0e0b05',
+    color: '#3d2b1f',
   },
   addUserBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fec82b20',
+    backgroundColor: '#f4a90020',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
   },
   addUserText: {
-    color: '#fec82b',
+    color: '#f4a900',
     marginLeft: 4,
     fontWeight: '600',
   },
@@ -427,12 +427,12 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 12,
     elevation: 2,
-    shadowColor: '#0e0b05',
+    shadowColor: '#3d2b1f',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     shadowRadius: 2,
     borderLeftWidth: 4,
-    borderLeftColor: '#fec82b',
+    borderLeftColor: '#f4a900',
   },
   userInfo: {
     flexDirection: 'row',
@@ -442,7 +442,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -453,11 +453,11 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#0e0b05',
+    color: '#3d2b1f',
   },
   userEmail: {
     fontSize: 13,
-    color: '#75482f',
+    color: '#3d2b1f',
     marginTop: 2,
   },
   userMeta: {
@@ -495,7 +495,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4caf5020',
   },
   inactiveBadge: {
-    backgroundColor: '#75482f20',
+    backgroundColor: '#3d2b1f20',
   },
   statusText: {
     fontSize: 10,
@@ -505,7 +505,7 @@ const styles = StyleSheet.create({
     color: '#4caf50',
   },
   inactiveStatusText: {
-    color: '#75482f',
+    color: '#3d2b1f',
   },
   userActions: {
     flexDirection: 'row',
@@ -521,7 +521,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   promoteBtn: {
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
   },
   demoteBtn: {
     backgroundColor: '#ff8800',
@@ -536,7 +536,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff4444',
   },
   actionBtnText: {
-    color: '#0e0b05',
+    color: '#3d2b1f',
     fontSize: 11,
     marginLeft: 4,
     fontWeight: '500',
@@ -557,7 +557,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#0e0b05',
+    color: '#3d2b1f',
   },
   modalForm: {
     padding: 16,
@@ -567,7 +567,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 8,
     marginTop: 12,
-    color: '#0e0b05',
+    color: '#3d2b1f',
   },
   input: {
     backgroundColor: '#f8f8f8',
@@ -576,7 +576,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderWidth: 1,
     borderColor: '#e0e0e0',
-    color: '#0e0b05',
+    color: '#3d2b1f',
   },
   roleSelector: {
     flexDirection: 'row',
@@ -591,17 +591,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   roleOptionActive: {
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
   },
   roleOptionText: {
-    color: '#75482f',
+    color: '#3d2b1f',
   },
   roleOptionTextActive: {
-    color: '#0e0b05',
+    color: '#3d2b1f',
     fontWeight: '600',
   },
   submitBtn: {
-    backgroundColor: '#fec82b',
+    backgroundColor: '#f4a900',
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',
@@ -609,7 +609,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   submitBtnText: {
-    color: '#0e0b05',
+    color: '#3d2b1f',
     fontSize: 18,
     fontWeight: '600',
   },
@@ -619,7 +619,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    color: '#75482f',
+    color: '#3d2b1f',
     marginTop: 12,
   },
 });
