@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "LiquorStorePOS",
-    "slug": "LiquorStorePOS",
+    "slug": "DevineVisionsPOS",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,7 @@
       "eas": {
         "projectId": "02c58c44-9886-4bef-a07d-c0922db31baa"
       }
-    }
+    },
+    "owner": "tatenda_gondo"
   }
 }

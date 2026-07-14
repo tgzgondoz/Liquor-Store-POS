@@ -128,23 +128,34 @@ const LoginScreen = ({ onLogin }) => {
             )}
           </TouchableOpacity>
 
+          {/* Demo Credentials Section */}
           <View style={styles.demoContainer}>
-            <Text style={styles.demoTitle}>Demo Accounts</Text>
+            <Text style={styles.demoTitle}>Quick Demo Login</Text>
             
-            <TouchableOpacity style={styles.demoButton} onPress={demoAdmin}>
+            {/* Admin Demo Button */}
+            <TouchableOpacity 
+              style={[styles.demoButton, styles.adminButton]} 
+              onPress={demoAdmin}
+            >
               <View style={styles.demoRow}>
-                <Icon name="person" size={16} color="#3d2b1f" />
-                <Text style={styles.demoText}>Admin: admin@liquorpos.com</Text>
+                <Icon name="shield-checkmark" size={16} color="#f4a900" />
+                <Text style={styles.demoText}>Admin Login</Text>
               </View>
-              <Text style={styles.demoPassword}>Pass: Liquor@Admin2026#Secure</Text>
+              <Text style={styles.demoCredentials}>admin@liquorpos.com</Text>
+              <Text style={styles.demoCredentials}>Liquor@Admin2026#Secure</Text>
             </TouchableOpacity>
-            
-            <TouchableOpacity style={styles.demoButton} onPress={demoStaff}>
+
+            {/* Staff Demo Button */}
+            <TouchableOpacity 
+              style={[styles.demoButton, styles.staffButton]} 
+              onPress={demoStaff}
+            >
               <View style={styles.demoRow}>
-                <Icon name="person-outline" size={16} color="#3d2b1f" />
-                <Text style={styles.demoText}>Staff: staff@liquorpos.com</Text>
+                <Icon name="person" size={16} color="#2c6b9e" />
+                <Text style={styles.demoText}>Staff Login</Text>
               </View>
-              <Text style={styles.demoPassword}>Pass: Liquor@Staff2026#Strong</Text>
+              <Text style={styles.demoCredentials}>staff@liquorpos.com</Text>
+              <Text style={styles.demoCredentials}>Liquor@Staff2026#Strong</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -249,29 +260,39 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#3d2b1f',
     marginBottom: 12,
+    textAlign: 'center',
   },
   demoButton: {
-    paddingVertical: 8,
-    marginBottom: 8,
-    backgroundColor: '#f8f8f8',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginBottom: 10,
     borderRadius: 8,
-    paddingHorizontal: 12,
+    borderWidth: 1,
+  },
+  adminButton: {
+    backgroundColor: '#fffcf0',
+    borderColor: '#f4a900',
+  },
+  staffButton: {
+    backgroundColor: '#f0f7ff',
+    borderColor: '#2c6b9e',
   },
   demoRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
     marginBottom: 4,
   },
   demoText: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#3d2b1f',
-    fontWeight: '500',
+    fontWeight: '600',
+    marginLeft: 6,
   },
-  demoPassword: {
-    fontSize: 11,
-    color: '#3d2b1f',
-    marginLeft: 20,
+  demoCredentials: {
+    fontSize: 12,
+    color: '#666',
+    marginLeft: 22,
+    fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
   },
 });
 
