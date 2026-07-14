@@ -394,7 +394,7 @@ const ProductManagementScreen = () => {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.headerTitle}>Product Management</Text>
+            
             <Text style={styles.headerSubtitle}>
               {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
             </Text>

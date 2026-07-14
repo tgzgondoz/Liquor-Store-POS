@@ -212,7 +212,7 @@ const InventoryScreen = ({ navigation }) => {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.headerTitle}>Inventory</Text>
+    
             <Text style={styles.headerSubtitle}>
               {stats.totalProducts} products in stock
             </Text>
