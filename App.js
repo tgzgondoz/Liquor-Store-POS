@@ -14,30 +14,30 @@ import LoginScreen from './src/screens/LoginScreen';
 import { initializeFirebase } from './src/config/firebase';
 import AuthService from './src/services/AuthService';
 
-// Initialize default admin and cashier users with strong passwords for NitroGo 2026
+// Initialize default admin and staff users for Liquor Store Management System
 const initializeDefaultUsers = async () => {
   try {
     const users = await AuthService.getUsers();
     if (users.length === 0) {
-      console.log('Creating default users for NitroGo...');
-      // Create default admin with specified credentials
-      await AuthService.registerUser('blessednitrogo@gmail.com', 'Desselb9025', 'NitroGo Admin', 'admin');
-      // Create default cashier with strong password for 2026
-      await AuthService.registerUser('staff@nitrogo.com', 'Nitro@Staff2026#Strong', 'NitroGo Staff', 'cashier');
-      console.log('Default NitroGo users created successfully for 2026');
+      console.log('Creating default users for Liquor Store...');
+      // Create default admin
+      await AuthService.registerUser('admin@liquorstore.com', 'Admin@Liquor2026#Secure', 'Store Admin', 'admin');
+      // Create default staff
+      await AuthService.registerUser('staff@liquorstore.com', 'Staff@Liquor2026#Secure', 'Store Staff', 'cashier');
+      console.log('Default Liquor Store users created successfully for 2026');
     } else {
       // Check if default users exist, if not create them
-      const adminExists = users.some(user => user.email === 'blessednitrogo@gmail.com');
-      const staffExists = users.some(user => user.email === 'staff@nitrogo.com');
+      const adminExists = users.some(user => user.email === 'admin@liquorstore.com');
+      const staffExists = users.some(user => user.email === 'staff@liquorstore.com');
       
       if (!adminExists) {
         console.log('Creating missing admin user...');
-        await AuthService.registerUser('blessednitrogo@gmail.com', 'Desselb9025', 'NitroGo Admin', 'admin');
+        await AuthService.registerUser('admin@liquorstore.com', 'Admin@Liquor2026#Secure', 'Store Admin', 'admin');
       }
       
       if (!staffExists) {
         console.log('Creating missing staff user...');
-        await AuthService.registerUser('staff@nitrogo.com', 'Nitro@Staff2026#Strong', 'NitroGo Staff', 'cashier');
+        await AuthService.registerUser('staff@liquorstore.com', 'Staff@Liquor2026#Secure', 'Store Staff', 'cashier');
       }
     }
   } catch (error) {
@@ -90,7 +90,7 @@ const MainApp = () => {
       <SafeAreaProvider>
         <SafeAreaView style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#b90d0b" />
-          <Text style={styles.loadingText}>Loading NitroGo 2026...</Text>
+          <Text style={styles.loadingText}>Loading Liquor Store Management System...</Text>
         </SafeAreaView>
       </SafeAreaProvider>
     );
