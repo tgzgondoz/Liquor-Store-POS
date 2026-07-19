@@ -10,7 +10,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Image
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AuthService from '../services/AuthService';
@@ -65,73 +67,83 @@ const LoginScreen = ({ onLogin }) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.logoContainer}>
-          {!imageError ? (
-            <Image 
-              source={require('../../assets/logo.png')} 
-              style={styles.logo}
-              resizeMode="cover"
-              onError={() => setImageError(true)}
-            />
-          ) : (
-            <View style={[styles.logo, styles.fallbackLogo]}>
-              <Icon name="storefront" size={60} color="#f4a900" />
-            </View>
-          )}
-          <Text style={styles.title}> The Executive Bar</Text>
-          <Text style={styles.subtitle}>Point of Sale System</Text>
-        </View>
-
-        <View style={styles.formContainer}>
-          <View style={styles.inputContainer}>
-            <Icon name="mail" size={20} color="#3d2b1f" style={styles.inputIcon} />
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              placeholderTextColor="#999"
-              value={email}
-              onChangeText={setEmail}
-              autoCapitalize="none"
-              keyboardType="email-address"
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Icon name="lock-closed" size={20} color="#3d2b1f" style={styles.inputIcon} />
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              placeholderTextColor="#999"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry={!showPassword}
-            />
-            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
-              <Icon name={showPassword ? "eye" : "eye-off"} size={20} color="#3d2b1f" />
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={handleLogin}
-            disabled={loading}
-          >
-            {loading ? (
-              <ActivityIndicator color="#3d2b1f" />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <View style={styles.logoContainer}>
+            {!imageError ? (
+              <Image 
+                source={require('../../assets/logo.png')} 
+                style={styles.logo}
+                resizeMode="cover"
+                onError={() => setImageError(true)}
+              />
             ) : (
-              <Text style={styles.loginButtonText}>Login</Text>
+              <View style={[styles.logo, styles.fallbackLogo]}>
+                <Icon name="storefront" size={60} color="#f4a900" />
+              </View>
             )}
-          </TouchableOpacity>
+            <Text style={styles.title}>The Executive Bar</Text>
+            <Text style={styles.subtitle}>Point of Sale System</Text>
+          </View>
 
-        
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+          <View style={styles.formContainer}>
+            <View style={styles.inputContainer}>
+              <Icon name="mail" size={20} color="#3d2b1f" style={styles.inputIcon} />
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                placeholderTextColor="#999"
+                value={email}
+                onChangeText={setEmail}
+                autoCapitalize="none"
+                keyboardType="email-address"
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Icon name="lock-closed" size={20} color="#3d2b1f" style={styles.inputIcon} />
+              <TextInput
+                style={styles.input}
+                placeholder="Password"
+                placeholderTextColor="#999"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!showPassword}
+              />
+              <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
+                <Icon name={showPassword ? "eye" : "eye-off"} size={20} color="#3d2b1f" />
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity
+              style={[styles.loginButton, loading && styles.loginButtonDisabled]}
+              onPress={handleLogin}
+              disabled={loading}
+            >
+              {loading ? (
+                <View style={styles.loadingContainer}>
+                  <ActivityIndicator color="#3d2b1f" />
+                  <Text style={styles.loadingText}>Logging in...</Text>
+                </View>
+              ) : (
+                <Text style={styles.loginButtonText}>Login</Text>
+              )}
+            </TouchableOpacity>
+
+            {/* Powered by OneGondo */}
+            <View style={styles.poweredByContainer}>
+              <Text style={styles.poweredByText}>
+                Powered by OneGondo +263 783 242 506
+              </Text>
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -215,10 +227,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
   },
+  loginButtonDisabled: {
+    opacity: 0.7,
+  },
+  loadingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  loadingText: {
+    color: '#3d2b1f',
+    fontSize: 16,
+    fontWeight: '600',
+    marginLeft: 8,
+  },
   loginButtonText: {
     color: '#3d2b1f',
     fontSize: 18,
     fontWeight: '600',
+  },
+  poweredByContainer: {
+    marginTop: 20,
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#e0e0e0',
+    alignItems: 'center',
+  },
+  poweredByText: {
+    fontSize: 12,
+    color: '#666',
+    fontWeight: '500',
   },
   demoContainer: {
     marginTop: 20,

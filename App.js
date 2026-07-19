@@ -89,8 +89,8 @@ const MainApp = () => {
     return (
       <SafeAreaProvider>
         <SafeAreaView style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#b90d0b" />
-          <Text style={styles.loadingText}>Loading Liquor Store Management System...</Text>
+          <ActivityIndicator size="large" color="#f4a900" />
+          <Text style={styles.loadingText}>Loading The Executive Bar ...</Text>
         </SafeAreaView>
       </SafeAreaProvider>
     );
@@ -128,18 +128,18 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F3F4F6',
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F3F4F6',
   },
   loadingText: {
     marginTop: 16,
     fontSize: 16,
-    color: '#020204',
+    color: '#3d2b1f',
     fontWeight: '500',
   },
 });

@@ -9,17 +9,36 @@ import {
   TextInput,
   Modal,
   StatusBar,
-  SafeAreaView,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ProductService from '../services/ProductService';
 
+const { width, height } = Dimensions.get('window');
+
 const ProductDetailsScreen = ({ route, navigation }) => {
+  const insets = useSafeAreaInsets();
   const { product } = route.params;
   const [transactions, setTransactions] = useState([]);
   const [restockModal, setRestockModal] = useState(false);
   const [restockQuantity, setRestockQuantity] = useState('');
   const [currentProduct, setCurrentProduct] = useState(product);
+
+  // Brand colors
+  const COLORS = {
+    primary: '#f4a900',
+    primaryDark: '#c48900',
+    primaryLight: '#f4a90015',
+    textDark: '#3d2b1f',
+    textLight: '#6B7280',
+    background: '#F3F4F6',
+    white: '#FFFFFF',
+    success: '#10B981',
+    warning: '#F59E0B',
+    danger: '#EF4444',
+    border: '#E5E7EB',
+  };
 
   useEffect(() => {
     loadTransactions();
@@ -69,7 +88,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
   const statusColor = status.color;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       <StatusBar barStyle="light-content" backgroundColor="#3d2b1f" />
       
       <View style={styles.header}>
@@ -77,7 +96,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Icon name="arrow-back" size={24} color="#FFFFFF" />
+          <Icon name="arrow-back" size={22} color="#FFFFFF" />
         </TouchableOpacity>
         <View style={styles.headerContent}>
           <Text style={styles.headerTitle}>Product Details</Text>
@@ -86,14 +105,17 @@ const ProductDetailsScreen = ({ route, navigation }) => {
       </View>
 
       <ScrollView 
-        style={styles.container}
+        style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[
+          styles.scrollContent,
+          { paddingBottom: 40 + insets.bottom }
+        ]}
       >
         {/* Product Header Card */}
         <View style={styles.productHeaderCard}>
           <View style={styles.productIconContainer}>
-            <Icon name="cube-outline" size={32} color="#f4a900" />
+            <Icon name="cube-outline" size={28} color="#f4a900" />
           </View>
           <View style={styles.productHeaderInfo}>
             <Text style={styles.productName}>{currentProduct.name}</Text>
@@ -105,7 +127,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
                 </Text>
               </View>
               <Text style={styles.productCategory}>
-                <Icon name="folder-outline" size={12} color="#6B7280" /> {currentProduct.category || 'Uncategorized'}
+                <Icon name="folder-outline" size={11} color="#6B7280" /> {currentProduct.category || 'Uncategorized'}
               </Text>
             </View>
           </View>
@@ -114,7 +136,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         {/* Product Description Section */}
         <View style={styles.infoCard}>
           <View style={styles.sectionHeader}>
-            <Icon name="document-text-outline" size={20} color="#f4a900" />
+            <Icon name="document-text-outline" size={18} color="#f4a900" />
             <Text style={styles.sectionTitle}>Product Description</Text>
           </View>
           <Text style={styles.descriptionText}>
@@ -125,7 +147,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         {/* Pricing Information */}
         <View style={styles.infoCard}>
           <View style={styles.sectionHeader}>
-            <Icon name="cash-outline" size={20} color="#f4a900" />
+            <Icon name="cash-outline" size={18} color="#f4a900" />
             <Text style={styles.sectionTitle}>Pricing Information</Text>
           </View>
           
@@ -143,13 +165,13 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
           <View style={styles.profitMetrics}>
             <View style={styles.metricItem}>
-              <Icon name="trending-up" size={16} color="#10B981" />
+              <Icon name="trending-up" size={14} color="#10B981" />
               <Text style={styles.metricLabel}>Profit/Unit</Text>
               <Text style={styles.metricValue}>{formatCurrency(profit)}</Text>
             </View>
             <View style={styles.metricDivider} />
             <View style={styles.metricItem}>
-              <Icon name="pie-chart" size={16} color="#10B981" />
+              <Icon name="pie-chart" size={14} color="#10B981" />
               <Text style={styles.metricLabel}>Margin</Text>
               <Text style={styles.metricValue}>{margin.toFixed(1)}%</Text>
             </View>
@@ -159,7 +181,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         {/* Inventory Information */}
         <View style={styles.infoCard}>
           <View style={styles.sectionHeader}>
-            <Icon name="layers-outline" size={20} color="#f4a900" />
+            <Icon name="layers-outline" size={18} color="#f4a900" />
             <Text style={styles.sectionTitle}>Inventory Information</Text>
           </View>
           
@@ -185,7 +207,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
           {currentProduct.supplier && (
             <View style={styles.supplierInfo}>
-              <Icon name="business-outline" size={14} color="#6B7280" />
+              <Icon name="business-outline" size={13} color="#6B7280" />
               <Text style={styles.supplierText}>Supplier: {currentProduct.supplier}</Text>
             </View>
           )}
@@ -197,7 +219,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
           onPress={() => setRestockModal(true)}
           activeOpacity={0.8}
         >
-          <Icon name="add-circle-outline" size={22} color="#3d2b1f" />
+          <Icon name="add-circle-outline" size={20} color="#3d2b1f" />
           <Text style={styles.restockButtonText}>Restock Product</Text>
         </TouchableOpacity>
 
@@ -205,7 +227,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         {transactions.length > 0 && (
           <View style={styles.infoCard}>
             <View style={styles.sectionHeader}>
-              <Icon name="time-outline" size={20} color="#f4a900" />
+              <Icon name="time-outline" size={18} color="#f4a900" />
               <Text style={styles.sectionTitle}>Recent Transactions</Text>
             </View>
             {transactions.slice(0, 5).map((transaction, index) => (
@@ -217,7 +239,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
                   ]}>
                     <Icon 
                       name={transaction.type === 'restock' ? "arrow-down" : "arrow-up"} 
-                      size={14} 
+                      size={13} 
                       color={transaction.type === 'restock' ? '#10B981' : '#EF4444'} 
                     />
                   </View>
@@ -255,7 +277,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
               <View style={styles.modalIconContainer}>
-                <Icon name="add-circle" size={28} color="#f4a900" />
+                <Icon name="add-circle" size={24} color="#f4a900" />
               </View>
               <Text style={styles.modalTitle}>Restock Product</Text>
               <Text style={styles.modalSubtitle}>{currentProduct.name}</Text>
@@ -291,42 +313,42 @@ const ProductDetailsScreen = ({ route, navigation }) => {
                 onPress={handleRestock}
                 activeOpacity={0.7}
               >
-                <Icon name="checkmark" size={18} color="#3d2b1f" />
+                <Icon name="checkmark" size={16} color="#3d2b1f" />
                 <Text style={styles.confirmButtonText}>Restock</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </Modal>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#F3F4F6',
-  },
   container: {
     flex: 1,
     backgroundColor: '#F3F4F6',
   },
+  scrollView: {
+    flex: 1,
+    backgroundColor: '#F3F4F6',
+  },
   scrollContent: {
-    paddingBottom: 40,
+    paddingTop: 0,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#3d2b1f',
-    paddingHorizontal: 16,
-    paddingTop: 8,
-    paddingBottom: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    minHeight: 52,
   },
   backButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -335,20 +357,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: '700',
     color: '#FFFFFF',
   },
   headerRight: {
-    width: 44,
+    width: 38,
   },
   productHeaderCard: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    marginHorizontal: 16,
-    marginTop: 16,
-    padding: 16,
+    marginHorizontal: 12,
+    marginTop: 12,
+    padding: 12,
     borderRadius: 12,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 2 },
@@ -359,54 +381,55 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   productIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: '#f4a90015',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    marginRight: 12,
   },
   productHeaderInfo: {
     flex: 1,
   },
   productName: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: '700',
     color: '#111827',
-    marginBottom: 4,
+    marginBottom: 2,
   },
   productMeta: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 8,
+    flexWrap: 'wrap',
   },
   statusBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-    gap: 4,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    gap: 3,
   },
   statusDot: {
-    width: 6,
-    height: 6,
+    width: 5,
+    height: 5,
     borderRadius: 3,
   },
   statusText: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '600',
   },
   productCategory: {
-    fontSize: 13,
+    fontSize: 11,
     color: '#6B7280',
   },
   infoCard: {
     backgroundColor: '#FFFFFF',
-    marginHorizontal: 16,
-    marginTop: 12,
-    padding: 16,
+    marginHorizontal: 12,
+    marginTop: 10,
+    padding: 12,
     borderRadius: 12,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 2 },
@@ -419,26 +442,26 @@ const styles = StyleSheet.create({
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
-    paddingBottom: 8,
+    marginBottom: 8,
+    paddingBottom: 6,
     borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6',
   },
   sectionTitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     color: '#111827',
-    marginLeft: 8,
+    marginLeft: 6,
   },
   descriptionText: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#374151',
-    lineHeight: 22,
-    paddingVertical: 4,
+    lineHeight: 20,
+    paddingVertical: 2,
   },
   priceGrid: {
     flexDirection: 'row',
-    marginBottom: 16,
+    marginBottom: 12,
   },
   priceItem: {
     flex: 1,
@@ -447,20 +470,20 @@ const styles = StyleSheet.create({
   priceDivider: {
     width: 1,
     backgroundColor: '#E5E7EB',
-    marginHorizontal: 12,
+    marginHorizontal: 8,
   },
   priceLabel: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#6B7280',
-    marginBottom: 4,
+    marginBottom: 2,
   },
   sellPrice: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
     color: '#f4a900',
   },
   costPrice: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
     color: '#6B7280',
   },
@@ -468,46 +491,47 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#F9FAFB',
     borderRadius: 8,
-    padding: 12,
-    marginTop: 4,
+    padding: 10,
+    marginTop: 2,
   },
   metricItem: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
+    gap: 4,
+    flexWrap: 'wrap',
   },
   metricDivider: {
     width: 1,
     backgroundColor: '#E5E7EB',
-    marginHorizontal: 8,
+    marginHorizontal: 6,
   },
   metricLabel: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#6B7280',
   },
   metricValue: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
     color: '#111827',
   },
   inventoryGrid: {
     flexDirection: 'row',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   inventoryItem: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: 4,
   },
   inventoryLabel: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#6B7280',
-    marginBottom: 4,
+    marginBottom: 2,
   },
   inventoryValue: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '700',
     color: '#111827',
   },
@@ -517,14 +541,14 @@ const styles = StyleSheet.create({
   supplierInfo: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 8,
-    paddingTop: 8,
+    marginTop: 6,
+    paddingTop: 6,
     borderTopWidth: 1,
     borderTopColor: '#F3F4F6',
-    gap: 6,
+    gap: 4,
   },
   supplierText: {
-    fontSize: 13,
+    fontSize: 12,
     color: '#6B7280',
   },
   restockButton: {
@@ -532,11 +556,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 16,
-    marginTop: 16,
-    paddingVertical: 16,
+    marginHorizontal: 12,
+    marginTop: 12,
+    paddingVertical: 14,
     borderRadius: 12,
-    gap: 8,
+    gap: 6,
     shadowColor: '#f4a900',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -545,26 +569,26 @@ const styles = StyleSheet.create({
   },
   restockButtonText: {
     color: '#3d2b1f',
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
   },
   transactionItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6',
   },
   transactionLeft: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 8,
   },
   transactionIcon: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -575,7 +599,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#EF444415',
   },
   transactionType: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
   },
   restockText: {
@@ -585,7 +609,7 @@ const styles = StyleSheet.create({
     color: '#EF4444',
   },
   transactionDate: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#6B7280',
   },
   modalOverlay: {
@@ -597,7 +621,7 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    padding: 24,
+    padding: 20,
     width: '85%',
     maxWidth: 400,
     shadowColor: '#000000',
@@ -608,56 +632,56 @@ const styles = StyleSheet.create({
   },
   modalHeader: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   modalIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: '#f4a90015',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 10,
   },
   modalTitle: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '700',
     color: '#111827',
-    marginBottom: 4,
+    marginBottom: 2,
   },
   modalSubtitle: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#6B7280',
   },
   modalLabel: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '500',
     color: '#374151',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   modalInput: {
     backgroundColor: '#F9FAFB',
     borderRadius: 10,
-    padding: 14,
-    fontSize: 18,
+    padding: 12,
+    fontSize: 16,
     borderWidth: 1,
     borderColor: '#E5E7EB',
     color: '#111827',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   modalButtons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 12,
+    gap: 10,
   },
   modalButton: {
     flex: 1,
-    paddingVertical: 14,
+    paddingVertical: 12,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    gap: 6,
+    gap: 4,
   },
   cancelButton: {
     backgroundColor: '#F3F4F6',
@@ -665,7 +689,7 @@ const styles = StyleSheet.create({
   cancelButtonText: {
     color: '#6B7280',
     fontWeight: '600',
-    fontSize: 16,
+    fontSize: 15,
   },
   confirmButton: {
     backgroundColor: '#f4a900',
@@ -678,7 +702,7 @@ const styles = StyleSheet.create({
   confirmButtonText: {
     color: '#3d2b1f',
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 15,
   },
 });
 
