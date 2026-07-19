@@ -23,14 +23,29 @@ const LoginScreen = ({ onLogin }) => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const validateEmail = (text) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (text && !emailRegex.test(text)) {
+      setEmailError('Please enter a valid email');
+    } else {
+      setEmailError('');
+    }
+    setEmail(text);
+  };
 
   const handleLogin = async () => {
+    setEmailError('');
+    setPasswordError('');
+
     if (!email.trim()) {
-      Alert.alert('Error', 'Please enter email');
+      setEmailError('Email is required');
       return;
     }
     if (!password.trim()) {
-      Alert.alert('Error', 'Please enter password');
+      setPasswordError('Password is required');
       return;
     }
 
@@ -59,11 +74,15 @@ const LoginScreen = ({ onLogin }) => {
   const demoAdmin = () => {
     setEmail('admin@liquorpos.com');
     setPassword('Liquor@Admin2026#Secure');
+    setEmailError('');
+    setPasswordError('');
   };
 
   const demoStaff = () => {
     setEmail('staff@liquorpos.com');
     setPassword('Liquor@Staff2026#Strong');
+    setEmailError('');
+    setPasswordError('');
   };
 
   return (
@@ -91,32 +110,38 @@ const LoginScreen = ({ onLogin }) => {
           </View>
 
           <View style={styles.formContainer}>
-            <View style={styles.inputContainer}>
-              <Icon name="mail" size={20} color="#3d2b1f" style={styles.inputIcon} />
-              <TextInput
-                style={styles.input}
-                placeholder="Email"
-                placeholderTextColor="#999"
-                value={email}
-                onChangeText={setEmail}
-                autoCapitalize="none"
-                keyboardType="email-address"
-              />
+            <View style={styles.inputWrapper}>
+              <View style={[styles.inputContainer, emailError && styles.inputError]}>
+                <Icon name="mail" size={20} color="#3d2b1f" style={styles.inputIcon} />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email"
+                  placeholderTextColor="#999"
+                  value={email}
+                  onChangeText={validateEmail}
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                />
+              </View>
+              {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
             </View>
 
-            <View style={styles.inputContainer}>
-              <Icon name="lock-closed" size={20} color="#3d2b1f" style={styles.inputIcon} />
-              <TextInput
-                style={styles.input}
-                placeholder="Password"
-                placeholderTextColor="#999"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry={!showPassword}
-              />
-              <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
-                <Icon name={showPassword ? "eye" : "eye-off"} size={20} color="#3d2b1f" />
-              </TouchableOpacity>
+            <View style={styles.inputWrapper}>
+              <View style={[styles.inputContainer, passwordError && styles.inputError]}>
+                <Icon name="lock-closed" size={20} color="#3d2b1f" style={styles.inputIcon} />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password"
+                  placeholderTextColor="#999"
+                  value={password}
+                  onChangeText={setPassword}
+                  secureTextEntry={!showPassword}
+                />
+                <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
+                  <Icon name={showPassword ? "eye" : "eye-off"} size={20} color="#3d2b1f" />
+                </TouchableOpacity>
+              </View>
+              {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
             </View>
 
             <TouchableOpacity
@@ -198,15 +223,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
+  inputWrapper: {
+    marginBottom: 16,
+  },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#3d2b1f',
     borderRadius: 8,
-    marginBottom: 16,
     paddingHorizontal: 12,
     backgroundColor: '#fff',
+  },
+  inputError: {
+    borderColor: '#dc3545',
   },
   inputIcon: {
     marginRight: 8,
@@ -219,6 +249,12 @@ const styles = StyleSheet.create({
   },
   eyeIcon: {
     padding: 8,
+  },
+  errorText: {
+    color: '#dc3545',
+    fontSize: 12,
+    marginTop: 4,
+    marginLeft: 4,
   },
   loginButton: {
     backgroundColor: '#f4a900',
